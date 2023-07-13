@@ -40,7 +40,7 @@ def delete(request, task_id):
     return redirect(index)
 
 def update(request, task_id):
-     try:
+    try:
         task = Task.objects.get(pk=task_id)
     except Task.DoesNotExist:
         raise Http404("Task does not exist")
