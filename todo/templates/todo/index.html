@@ -15,11 +15,11 @@
       {% csrf_token %}
       <div>
         <label for="titleInput">タイトル</label><br>
-        <input id="titleInput" name="title" type="text" placeholder="ここにタイトルを入力">
+        <input id="titleInput" name="title" type="text" placeholder="ここにタイトルを入力" required>
       </div>
       <div>
         <label for="dueInput">期限</label><br>
-        <input id="dueInput" name="due_at" type="datetime-local">
+        <input id="dueInput" name="due_at" type="datetime-local" required>
       </div>
       <div>
         <button type="submit">投稿</button>
