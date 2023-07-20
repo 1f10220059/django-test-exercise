@@ -3,7 +3,7 @@
 <html lang="ja">
 
   <head>
-    <title>To Do Application</title>
+    <title>To Do アプリ</title>
     <meta charset="UTF-8">
     <meta name="author" content="INIAD">
   </head>
@@ -11,22 +11,45 @@
   <body>
     <h1>{{ task.title }}</h1>
     <ul>
-      <li>Posted at: {{ task.posted_at }}</li>
+      <li>投稿日: {{ task.posted_at }}</li>
       {% if task.due_at %}
-      <li>Due at: {{ task.due_at }}</li>
+      <li>期限: {{ task.due_at }}</li>
       {% endif %}
       {% if task.completed %}
-      <li>Status: Completed</li>
+      <li>状況: 完了済み</li>
       {% else %}
-      <li>Status: Not Completed</li>
+      <li>状況: 未完了</li>
       {% endif %}
     </ul>
 
     <div>
       <a href="{% url 'index' %}">Top</a>
-      | <a href="{% url 'update' task.id %}">Edit</a>
-      <a href="{% url 'delete' task.id %}">Delete</a>
+      | <a href="{% url 'update' task.id %}">編集</a>
+      <a href="{% url 'delete' task.id %}">削除</a>
     </div>
+    
+    <span id="view_clock"></span>
+
+    <script type="text/javascript">
+    timerID = setInterval('clock()',500);
+
+    function clock() {
+    	document.getElementById("view_clock").innerHTML = getNow();
+    }
+
+    function getNow() {
+	    var now = new Date();
+	    var year = now.getFullYear();
+	    var mon = now.getMonth()+1;
+	    var day = now.getDate();
+	    var hour = now.getHours();
+	    var min = now.getMinutes();
+	    var sec = now.getSeconds();
+
+	    var s = "現在時刻 : " + year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" + sec + "秒"; 
+	    return s;
+    }
+    </script>
   </body>
 
 </html>
