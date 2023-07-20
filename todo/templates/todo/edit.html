@@ -15,17 +15,39 @@
       {% csrf_token %}
       <div>
         <label for="titleInput">Title</label><br>
-        <input id="titleInput" name="title" type="text" placeholder="Input title" value="{{ task.title }}">
+        <input id="titleInput" name="title" type="text" placeholder="Input title" value="{{ task.title }}" required>
       </div>
       <div>
         <label for="dueInput">Due at:</label><br>
-        <input id="dueInput" name="due_at" type="datetime-local" value="{{ task.due_at |date:"Y-m-d H:i" }}">
+        <input id="dueInput" name="due_at" type="datetime-local" value="{{ task.due_at |date:"Y-m-d H:i" }}" required>
       </div>
       <div>
         <button type="submit">Submit</button>
       </div>
     </form>
     <br>
+    <span id="view_clock"></span>
+
+    <script type="text/javascript">
+    timerID = setInterval('clock()',500);
+
+    function clock() {
+    	document.getElementById("view_clock").innerHTML = getNow();
+    }
+
+    function getNow() {
+	    var now = new Date();
+	    var year = now.getFullYear();
+	    var mon = now.getMonth()+1;
+	    var day = now.getDate();
+	    var hour = now.getHours();
+	    var min = now.getMinutes();
+	    var sec = now.getSeconds();
+
+	    var s = "現在時刻 : " + year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" + sec + "秒"; 
+	    return s;
+    }
+    </script>
   </body>
 
 </html>
