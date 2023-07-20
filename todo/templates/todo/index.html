@@ -5,6 +5,7 @@
   <head>
     <title>To Do アプリ</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'todo/index.css' %}"
     <meta name="author" content="INIAD">
   </head>
 
@@ -13,11 +14,11 @@
     <p>以下のフォームからタスクを投稿出来ます</p>
     <form action="{% url 'index' %}" method="post">
       {% csrf_token %}
-      <div>
+      <div class="input">
         <label for="titleInput">タイトル</label><br>
         <input id="titleInput" name="title" type="text" placeholder="ここにタイトルを入力" required>
       </div>
-      <div>
+      <div class="input">
         <label for="dueInput">期限</label><br>
         <input id="dueInput" name="due_at" type="datetime-local" required>
       </div>
@@ -28,8 +29,8 @@
     <br>
 
     <div>
-      <a href="{% url 'index' %}?order=due">期限順</a> |
-      <a href="{% url 'index' %}?order=post">投稿日順</a>
+      <a class="sort" href="{% url 'index' %}?order=due">期限順</a> |
+      <a class="sort" href="{% url 'index' %}?order=post">投稿日順</a>
     </div>
 
     {% for task in tasks %}
@@ -47,6 +48,7 @@
         {% endif %}
       </ul>
     </div>
+    
     {% endfor %}
 
     <span id="view_clock"></span>
@@ -71,6 +73,7 @@
 	    return s;
     }
     </script>
+  <div class="bg_pattern Polka_v2"></div>
   </body>
 
 </html>
